@@ -1,0 +1,19 @@
+{
+  "name": "ccl_twinview",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "preinstall": "node scripts/check-prereqs.mjs",
+    "dev": "concurrently -n backend,desktop -c blue,green \"pnpm --filter @ccl/backend dev\" \"pnpm --filter @ccl/desktop dev\"",
+    "dev:backend": "pnpm --filter @ccl/backend dev",
+    "dev:desktop": "pnpm --filter @ccl/desktop dev",
+    "build": "pnpm --filter @ccl/desktop build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
