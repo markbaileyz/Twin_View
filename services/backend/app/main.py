@@ -5,8 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.db.engine import engine
 from app.db.models import Base
-from app.routers import clusters, demo, events, health, inventory
-from app.routers.placeholder import make_router
+from app.routers import clusters, connections, demo, drift, events, health, inventory, llm, rvtools
 from app.ws.broadcaster import telemetry_broadcaster
 
 APP_VERSION = "0.1.0"
@@ -31,11 +30,11 @@ app.include_router(health.router)
 app.include_router(events.router)
 app.include_router(clusters.router)
 app.include_router(demo.router)
+app.include_router(llm.router)
+app.include_router(connections.router)
+app.include_router(drift.router)
+app.include_router(rvtools.router)
 app.include_router(inventory.router)
-app.include_router(make_router('/llm', 'llm'))
-app.include_router(make_router('/connections', 'connections'))
-app.include_router(make_router('/drift', 'drift'))
-app.include_router(make_router('/rvtools', 'rvtools'))
 
 
 @app.websocket('/ws/telemetry')
